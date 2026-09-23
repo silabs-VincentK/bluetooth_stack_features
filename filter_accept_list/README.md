@@ -2,7 +2,7 @@
 
 ## Overview ##
 
-The Filter Accept List is a feature that filters out devices not in the accept list during scanning or connection establishment. This example demonstrates the use of Filter Accept List in various scenarios. 
+The Filter Accept List is a feature that filters out devices not in the accept list during scanning or connection establishment. This example demonstrates the use of Filter Accept List in various scenarios.
 
 Peripherals used: EUSART/vcom.
 
@@ -13,7 +13,7 @@ Peripherals used: EUSART/vcom.
 ## Hardware Required ##
 
 Any Bluetooth-capable EFR32 series 2 device.
-	  
+
 ## Connections Required ##
 
 Connect the board via a micro-USB cable to your PC to flash the example and virtual serial port for the CLI.

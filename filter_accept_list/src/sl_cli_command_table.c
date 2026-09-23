@@ -53,7 +53,7 @@ extern "C" {
  *         name: status             # Name of command
  *         handler: status_command  # Function to be called. Must be defined
  *         help: "Prints status"    # Optional help description
- *         shortcuts:               # Optional shorcut list
+ *         shortcuts:               # Optional shortcut list
  *           - name: st
  *         argument:                # Argument list, if apliccable
  *           - type: uint8          # Variable type
@@ -64,7 +64,7 @@ extern "C" {
  *       value:
  *         name: shell              # Group name
  *         help: "Shell commands"   # Optional help description
- *         shortcuts:               # Optional shorcuts
+ *         shortcuts:               # Optional shortcuts
  *           - name: sh
  *     - name: cli_command
  *       value:
@@ -122,91 +122,91 @@ extern "C" {
  *
  ******************************************************************************/
 
-
 /*******************************************************************************
  * No template contributions supplied to project. Provide external definition
  * of command table or regenerate project with template contributions.
  ******************************************************************************/
 static const sl_cli_command_info_t cli_cmd_scan =
-SL_CLI_COMMAND(scan,
-    "Control scanning.",
-    "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(scan,
+                 "Control scanning.",
+                 "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_connect =
-SL_CLI_COMMAND(connect,
-    "Connect a discovered device.",
-    "index of the discovered device",
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(connect,
+                 "Connect a discovered device.",
+                 "index of the discovered device",
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_advertise =
-SL_CLI_COMMAND(advertise,
-    "Control advertising.",
-    "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(advertise,
+                 "Control advertising.",
+                 "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_pair =
-SL_CLI_COMMAND(pair,
-    "Pair with the connected device.",
-    "",
-      { SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(pair,
+                 "Pair with the connected device.",
+                 "",
+                 { SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_add_peer =
-SL_CLI_COMMAND(add_peer,
-    "Add the currently connected device to the Filter Accept List.",
-    "",
-      { SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(add_peer,
+                 "Add the currently connected device to the Filter Accept List.",
+                 "",
+                 { SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_add_discovered =
-SL_CLI_COMMAND(add_discovered,
-    "Add a discovered device to the Filter Accept List.",
-    "index of the discovered device",
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(add_discovered,
+                 "Add a discovered device to the Filter Accept List.",
+                 "index of the discovered device",
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_filter =
-SL_CLI_COMMAND(filter,
-    "Control filtering.",
-    "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(filter,
+                 "Control filtering.",
+                 "0=Disable 1=Enable" SL_CLI_UNIT_SEPARATOR,
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_disconnect =
-SL_CLI_COMMAND(disconnect,
-    "Close the current connection.",
-    "",
-      { SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(disconnect,
+                 "Close the current connection.",
+                 "",
+                 { SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_bondings =
-SL_CLI_COMMAND(bondings,
-    "List the bonded devices.",
-    "",
-      { SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(bondings,
+                 "List the bonded devices.",
+                 "",
+                 { SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_clear =
-SL_CLI_COMMAND(clear,
-    "Clear the Filter Accept List.",
-    "",
-      { SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(clear,
+                 "Clear the Filter Accept List.",
+                 "",
+                 { SL_CLI_ARG_END, });
 
 static const sl_cli_command_info_t cli_cmd_unpair =
-SL_CLI_COMMAND(unpair,
-    "Unpair a device in the bonded devices list.",
-    "index in the bonded devices list",
-      { SL_CLI_ARG_UINT8, SL_CLI_ARG_END,});
+  SL_CLI_COMMAND(unpair,
+                 "Unpair a device in the bonded devices list.",
+                 "index in the bonded devices list",
+                 { SL_CLI_ARG_UINT8, SL_CLI_ARG_END, });
 
 const sl_cli_command_entry_t sl_cli_default_command_table[] =
-  {
-    { "scan", &cli_cmd_scan, false },
-    { "connect", &cli_cmd_connect, false },
-    { "advertise", &cli_cmd_advertise, false },
-    { "add_peer", &cli_cmd_add_peer, false },
-    { "add_discovered", &cli_cmd_add_discovered, false },
-    { "clear", &cli_cmd_clear, false },
-    { "pair", &cli_cmd_pair, false },
-    { "bondings", &cli_cmd_bondings, false },
-    { "filter", &cli_cmd_filter, false },
-    { "disconnect", &cli_cmd_disconnect, false },
-    { "unpair", &cli_cmd_unpair, false },
-    { NULL, NULL, false } };
+{
+  { "scan", &cli_cmd_scan, false },
+  { "connect", &cli_cmd_connect, false },
+  { "advertise", &cli_cmd_advertise, false },
+  { "add_peer", &cli_cmd_add_peer, false },
+  { "add_discovered", &cli_cmd_add_discovered, false },
+  { "clear", &cli_cmd_clear, false },
+  { "pair", &cli_cmd_pair, false },
+  { "bondings", &cli_cmd_bondings, false },
+  { "filter", &cli_cmd_filter, false },
+  { "disconnect", &cli_cmd_disconnect, false },
+  { "unpair", &cli_cmd_unpair, false },
+  { NULL, NULL, false }
+};
 
 #ifdef __cplusplus
 }
