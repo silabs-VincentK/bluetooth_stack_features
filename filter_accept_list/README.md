@@ -16,34 +16,35 @@ Any Bluetooth-capable EFR32 series 2 device.
 
 ## Connections Required ##
 
-Connect the board via a micro-USB cable to your PC to flash the example and virtual serial port for the CLI.
+Connect the board to your PC via a micro-USB cable to flash the example and use the virtual serial port for the CLI.
 
 ## Setup ##
-To test this application, you can either create a project based on an example project or start with an Bluetooth - SoC Empty example project.
+To test this application, you can either create a project based on this example or start with a Bluetooth - SoC Empty example project.
 
-### Create a project based on an example project ###
+### Create a project based on the example in Simplicity Studio ###
 
-1. Make sure that this repository is added to [Preferences > Simplicity Studio > External Repos](https://docs.silabs.com/simplicity-studio-5-users-guide/latest/ss-5-users-guide-about-the-launcher/welcome-and-device-tabs).
+1. Make sure that this repository is cloned locally and added to [SDK extensions](https://docs.silabs.com/ssv6ug/latest/ssv6-install-sdk-extensions/).
 
-2. From the Launcher Home, add your board to My Products, click on it, and click on the **EXAMPLE PROJECTS & DEMOS** tab. Find the example project filtering by **'filter'**.
+2. From **Devices**, select the connected device, and click on the **EXAMPLE PROJECTS & DEMOS** tab. You can find this example project by setting filtering keyword **'filter'**.
 
 3. Click on the **Create** button on the **Bluetooth - SoC Filter Accept List** example. Example project creation dialog pops up -> click **Finish** and the project should be generated.
 
-4. Build and flash this example to the board.
+4. Open the project in the IDE, build and flash this example to your device.
 
 ### Start with a Bluetooth - SoC Empty application example project ###
 
 1. Create a new "Bluetooth - SoC Empty" project
-2. Add these software components:
+2. In Simplicity Studio, open the .slcp file in the project folder, and add these software components:
                 a. Services -> Command Line Interface -> CLI Instance. Change EOL to \r\n in CLI Global Configuration (optional).
                 b. Bluetooth -> Bluetooth LE Controller (Link Layer) -> Features with Commands and Events -> Device filtering with Bluetooth controller's Filter Accept List.
-                c. Bluetooth -> Bluetooth LE Controller (Link Layer) -> Additional Features -> Address resolving with Bluetooth Ccntroller's Resolving List.
+                c. Bluetooth -> Bluetooth LE Controller (Link Layer) -> Additional Features -> Address resolving with Bluetooth Controller's Resolving List.
                 d. Bluetooth -> Bluetooth Host (Stack) -> Additional Features -> Select API semantics that use accurate Bluetooth address types
-				e. In Platform -> Board -> Board Control, Enable Enable Virtual COM UART.
-3. Delete sl_cli_command_table.c in the project's autogen folder. Copy the sl_cli_command_table.c included in this example to the same folder.
+				e. In Platform -> Board -> Board Control, enable **Enable Virtual COM UART**.
+3. Copy the "template_contribution" section of the included soc_filter_accept_list.slcp file and paste it into the generated .slcp file in your project folder.
 4. Copy the included cli_functions.h file to the project folder.
 5. Copy the included app.c file to the project folder.
-6. Build and flash this project to your device.
+6. In Simplicity Studio, open the .slcp file in the project folder, navigate to the Overview panel, click the three dots in Project Details, and click "Force Generation".
+7. Open the project in the IDE, build and flash this example to your device.
 
 ## How It Works ##
 
@@ -59,11 +60,11 @@ A pair of BLE-capable EFR32 devices.
 
 scan {1|0}
 
-Start scanning (1) or stop scanning (0). A list of up to 10 devices will be displayed, with indices 0-9 in a bracket. Scanning is stopped when the number of listed devices reaches 10, or if the 'scan 0' command is issued. Each time a 'scan 1' command is issue, the list will be cleared internally first. When scanning is stopped, the device is in the idle state.
+Start scanning (1) or stop scanning (0). A list of up to 10 devices will be displayed, with indices 0-9 in brackets. Scanning is stopped when the number of listed devices reaches 10, or if the 'scan 0' command is issued. Each time a 'scan 1' command is issued, the list will be cleared internally first. When scanning is stopped, the device is in the idle state.
 
-connect (n}
+connect {n}
 
-Connect with the device with specified index in the scan result list. This command can be issued only in the idle state.
+Connect to the device at the specified index in the scan result list. This command can be issued only in the idle state.
 
 disconnect
 
@@ -81,7 +82,7 @@ clear
 
 Clear the filter accept list.
 
-add_connected
+add_peer
 
 Add the current connected device to the filter accept list.
 
@@ -95,7 +96,7 @@ List the currently paired devices. This command can only be issued in the idle s
 
 unpair {n}
 
-Unpair the device with index n in the in the bonding database. The device will also be removed from the resolve list. The filter entry of this deivice, if using RPA,  should not be deemed valid after this.
+Unpair the device with index n in the bonding database. The device will also be removed from the resolving list. The filter entry for this device, if it uses an RPA, should not be deemed valid after this.
 
 filter {1|0}
 
@@ -108,23 +109,23 @@ I. Scanning filter
 1. 'scan 1'.
 2. 'scan 0' if not automatically stopped.
 3. 'add_discovered {n}'
-4. repeat the above until all devices are added.
+4. Repeat the above until all devices are added.
 5. 'filter 1'
-5. 'scan 1'
-6. Only the added device will be visible.
-7. 'filter 0'
-8. Other devices should be visible after this.
-9. 'clear' to empty the filter accept list.
+6. 'scan 1'
+7. Only the added devices will be visible.
+8. 'filter 0'
+9. Other devices should be visible after this.
+10. 'clear' to empty the filter accept list.
 
 II. Central connection filter
 
 1. 'scan 1'.
 2. 'scan 0' if not automatically stopped.
 3. 'add_discovered {n}'
-4. repeat the above until all devices are added.
+4. Repeat the above until all devices are added.
 5. 'filter 1'
 6. 'connect {n}'
-7. This above command should work with devices added to the filter accept list
+7. The above command should work with devices added to the filter accept list.
 8. 'disconnect' from either side.
 9. 'filter 0'
 10. Verify if other devices can be connected now.
@@ -137,7 +138,7 @@ III. Peripheral connection filter with scanned device
 2. 'advertise 1'
 3. Wait for the central device to connect.
 4. Only the devices in the filter accept list can connect to this device.
-5. 'disconenct' if connected
+5. 'disconnect' if connected.
 6. 'filter 0'
 7. 'advertise 1'
 8. Verify that other devices can also connect to this device.
@@ -148,11 +149,11 @@ IV. Peripheral connection filter with formerly connected device
 
 1. 'advertise 1'
 2. Wait for the remote central device to connect.
-3. Once connected, 'add_peer' to add the connected device to the filter accept list
+3. Once connected, 'add_peer' to add the connected device to the filter accept list.
 4. 'disconnect' and repeat the above steps to add more devices.
 5. 'filter 1'
 6. 'advertise 1'
-7. Wait for the remote central device to connect: Only the device in the filter accept list can establish the connection.
+7. Wait for the remote central device to connect: Only devices in the filter accept list can establish the connection.
 8. 'disconnect' if connected
 9. 'filter 0'
 10. Verify that other devices can also connect to this device.
@@ -162,24 +163,24 @@ IV. Peripheral connection filter with formerly connected device
 V. Testing RPA (Requiring a mobile phone with RPA, like an iPhone)
 
 1. 'advertise 1'
-2. Wait for the remote central device to connect.
-3. Wait for the connection to establish from a central device.
-4. If the peer device is using RPC (type = 4), 'pair'
-3. 'add_peer' to add the identity address of the connected device to the filter accept list
-4. 'disconnect' and add more devices if needed.
-5. 'filter 1'
-6. 'advertise 1'
-7. Wait for the remote central device to connect: Only the device in the filter accept list can establish the connection.
-8. 'disconnect' if connected
-9. (Optional) wait until the device with RPA changes it's RPA and go to step 6.
-10. 'filter 0'
-11. Verify that other devices can also connect to this device.
-12. 'disconnect' if connected.
-13. 'clear' to empty the filter accept list.
+2. Scan the device from the mobile phone.
+3. Establish a connection from the mobile phone.
+4. Make sure that the peer device is using RPA (type = 4), and run 'pair'.
+5. 'add_peer' to add the identity address of the connected device to the filter accept list
+6. 'disconnect' and add more devices if needed.
+7. 'filter 1'
+8. 'advertise 1'
+9. Wait for the remote central device to connect: Only devices in the filter accept list can establish the connection.
+10. 'disconnect' if connected.
+11. (Optional) wait until the device using an RPA changes its RPA, then go to step 8.
+12. 'filter 0'
+13. Verify that other devices can also connect to this device.
+14. 'disconnect' if connected.
+15. 'clear' to empty the filter accept list.
 
 ## Limitations ##
 
 1. Pairing is done in the minimalist way, which does not perform authentication.
 2. If a connection is initiated towards an iPhone, it will be disconnected in a few seconds.
-3. Only one device should be connected any time for simplicity. This is not a hard limit of the stack and can be easily extended.
-4. Unpairing a device does not automatically removes it from the filter accept list.
+3. Only one device should be connected at any time for simplicity. This is not a hard limit of the stack and can be easily extended.
+4. Unpairing a device does not automatically remove it from the filter accept list.
