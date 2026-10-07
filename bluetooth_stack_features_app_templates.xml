@@ -561,7 +561,7 @@
     <properties key="quality" value="development"/>
   </descriptors>
   <descriptors name="soc_filter_accept_list" label="Bluetooth - SoC Filter Accept List" description="This example shows how the Filter Aceept List is used in various scenarios.
-  Filter Accept List can be used to retrict the reported advertisements to those from relavent devices only.&#xA;">
+  Filter Accept List can be used to restrict the reported advertisements to those from relavent devices only.&#xA;">
     <properties key="namespace" value="template.uc"/>
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="filter_accept_list/SimplicityStudio/soc_filter_accept_list.slcp"/>
