@@ -560,7 +560,7 @@
     <properties key="category" value="Bluetooth Examples"/>
     <properties key="quality" value="development"/>
   </descriptors>
-  <descriptors name="soc_filter_accept_list" label="Bluetooth - SoC Filter Accept List" description="This example shows how the Filter Aceept List is used in various scenarios. It can restrict reported advertisements to those from relevant devices.&#xA;">
+  <descriptors name="soc_filter_accept_list" label="Bluetooth - SoC Filter Accept List" description="This example shows how the Filter Accept List is used in various scenarios. It can restrict reported advertisements to those from relevant devices.&#xA;">
     <properties key="namespace" value="template.uc"/>
     <properties key="keywords" value="universal\ configurator"/>
     <properties key="projectFilePaths" value="filter_accept_list/SimplicityStudio/soc_filter_accept_list.slcp"/>
